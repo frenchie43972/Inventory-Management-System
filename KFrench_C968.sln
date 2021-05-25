@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KFrench_C968", "KFrench_C968.csproj", "{2B1BA770-457C-43B3-9D96-871429B349EB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2B1BA770-457C-43B3-9D96-871429B349EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B1BA770-457C-43B3-9D96-871429B349EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B1BA770-457C-43B3-9D96-871429B349EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B1BA770-457C-43B3-9D96-871429B349EB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {78B048A7-3A21-4F6A-A77A-B033C78C99B9}
+	EndGlobalSection
+EndGlobal
