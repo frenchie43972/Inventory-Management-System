@@ -18,19 +18,19 @@ namespace KFrench_C968
         public int Min { get; set; }
         public int Max { get; set; }
 
-        public void AddAssociatedPart(Part )
-        {
+        //public void AddAssociatedPart(Part )
+        //{
 
-        }
+        //}
 
-        public bool RemoveAssociatedPart(int )
-        {
+        //public bool RemoveAssociatedPart(int )
+        //{
 
-        }
+        //}
 
-        public Part LookupAssociatedPart(int )
-        {
+        //public Part LookupAssociatedPart(int )
+        //{
 
-        }
+        //}
     }
 }

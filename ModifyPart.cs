@@ -15,6 +15,13 @@ namespace KFrench_C968
         public ModifyPart()
         {
             InitializeComponent();
+            
+            //txtAddPartName.Text = Inventory.AllParts[Inventory.CurrentIndex].Name;
+            //txtAddPartInv.Text = Inventory.AllParts[Inventory.CurrentIndex].InStock.ToString();
+            //txtAddPartPrice.Text = Inventory.AllParts[Inventory.CurrentIndex].Price.ToString();
+            //txtAddPartMax.Text = Inventory.AllParts[Inventory.CurrentIndex].InStock.ToString();
+            //txtAddPartMax.Text = Inventory.AllParts[Inventory.CurrentIndex].InStock.ToString();
+            //txtAddPartMachineID.Text = Inventory.AllParts[Inventory.CurrentIndex].InStock.ToString();
         }
 
         private void radioInHouseModify_CheckedChanged(object sender, EventArgs e)

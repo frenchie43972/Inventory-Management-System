@@ -15,7 +15,7 @@ namespace KFrench_C968
         public int InStock { get; set; }        
         public int Min { get; set; }        
         public int Max { get; set; }
-        public static int partIDCount;
+        public static int partIDCount = 1;
 
         public Part(string name, decimal price, int stock, int min, int max)
         {

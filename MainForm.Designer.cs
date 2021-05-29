@@ -78,7 +78,7 @@ namespace KFrench_C968
             this.btnMainProductsSearch.TabIndex = 5;
             this.btnMainProductsSearch.Text = "Search";
             this.btnMainProductsSearch.UseVisualStyleBackColor = true;
-            this.btnMainProductsSearch.Click += new System.EventHandler(this.btnMainProductsSearch_Click);
+            this.btnMainProductsSearch.Click += new System.EventHandler(this.BtnMainProductsSearch_Click);
             // 
             // btnMainPartsAdd
             // 
@@ -89,7 +89,7 @@ namespace KFrench_C968
             this.btnMainPartsAdd.TabIndex = 6;
             this.btnMainPartsAdd.Text = "Add";
             this.btnMainPartsAdd.UseVisualStyleBackColor = true;
-            this.btnMainPartsAdd.Click += new System.EventHandler(this.btnMainPartsAdd_Click);
+            this.btnMainPartsAdd.Click += new System.EventHandler(this.BtnMainPartsAdd_Click);
             // 
             // btnMainPartsModify
             // 
@@ -100,7 +100,7 @@ namespace KFrench_C968
             this.btnMainPartsModify.TabIndex = 7;
             this.btnMainPartsModify.Text = "Modify";
             this.btnMainPartsModify.UseVisualStyleBackColor = true;
-            this.btnMainPartsModify.Click += new System.EventHandler(this.btnMainPartsModify_Click);
+            this.btnMainPartsModify.Click += new System.EventHandler(this.BtnMainPartsModify_Click);
             // 
             // btnMainPartsDelete
             // 
@@ -111,7 +111,7 @@ namespace KFrench_C968
             this.btnMainPartsDelete.TabIndex = 8;
             this.btnMainPartsDelete.Text = "Delete";
             this.btnMainPartsDelete.UseVisualStyleBackColor = true;
-            this.btnMainPartsDelete.Click += new System.EventHandler(this.btnMainPartsDelete_Click);
+            this.btnMainPartsDelete.Click += new System.EventHandler(this.BtnMainPartsDelete_Click);
             // 
             // btnMainProductsDelete
             // 
@@ -122,7 +122,7 @@ namespace KFrench_C968
             this.btnMainProductsDelete.TabIndex = 9;
             this.btnMainProductsDelete.Text = "Delete";
             this.btnMainProductsDelete.UseVisualStyleBackColor = true;
-            this.btnMainProductsDelete.Click += new System.EventHandler(this.btnMainProductsDelete_Click);
+            this.btnMainProductsDelete.Click += new System.EventHandler(this.BtnMainProductsDelete_Click);
             // 
             // btnMainProductsModify
             // 
@@ -133,7 +133,7 @@ namespace KFrench_C968
             this.btnMainProductsModify.TabIndex = 10;
             this.btnMainProductsModify.Text = "Modify";
             this.btnMainProductsModify.UseVisualStyleBackColor = true;
-            this.btnMainProductsModify.Click += new System.EventHandler(this.btnMainProductsModify_Click);
+            this.btnMainProductsModify.Click += new System.EventHandler(this.BtnMainProductsModify_Click);
             // 
             // btnMainProductsAdd
             // 
@@ -144,7 +144,7 @@ namespace KFrench_C968
             this.btnMainProductsAdd.TabIndex = 11;
             this.btnMainProductsAdd.Text = "Add";
             this.btnMainProductsAdd.UseVisualStyleBackColor = true;
-            this.btnMainProductsAdd.Click += new System.EventHandler(this.btnMainProductsAdd_Click);
+            this.btnMainProductsAdd.Click += new System.EventHandler(this.BtnMainProductsAdd_Click);
             // 
             // btnMainExit
             // 
@@ -155,7 +155,7 @@ namespace KFrench_C968
             this.btnMainExit.TabIndex = 12;
             this.btnMainExit.Text = "Exit";
             this.btnMainExit.UseVisualStyleBackColor = true;
-            this.btnMainExit.Click += new System.EventHandler(this.btnMainExit_Click);
+            this.btnMainExit.Click += new System.EventHandler(this.BtnMainExit_Click);
             // 
             // lblMainParts
             // 
@@ -192,7 +192,7 @@ namespace KFrench_C968
             this.dataMainParts.RowTemplate.Height = 25;
             this.dataMainParts.Size = new System.Drawing.Size(456, 199);
             this.dataMainParts.TabIndex = 16;
-            this.dataMainParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMainParts_CellContentClick);
+            //this.dataMainParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataMainParts_CellContentClick);
             // 
             // dataMainProducts
             // 
@@ -213,7 +213,7 @@ namespace KFrench_C968
             this.btnMainPartsSearch.TabIndex = 18;
             this.btnMainPartsSearch.Text = "Search";
             this.btnMainPartsSearch.UseVisualStyleBackColor = true;
-            this.btnMainPartsSearch.Click += new System.EventHandler(this.btnMainPartsSearch_Click);
+            this.btnMainPartsSearch.Click += new System.EventHandler(this.BtnMainPartsSearch_Click);
             // 
             // MainForm
             // 
@@ -239,6 +239,7 @@ namespace KFrench_C968
             this.Controls.Add(this.txtMainPartsSearch);
             this.Name = "MainForm";
             this.Text = "Main Form";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataMainParts)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataMainProducts)).EndInit();
             this.ResumeLayout(false);
