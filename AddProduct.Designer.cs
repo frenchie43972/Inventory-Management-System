@@ -64,6 +64,7 @@ namespace KFrench_C968
             this.dataAddProductAllParts.RowTemplate.Height = 25;
             this.dataAddProductAllParts.Size = new System.Drawing.Size(456, 159);
             this.dataAddProductAllParts.TabIndex = 17;
+            this.dataAddProductAllParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataAddProductAllParts_CellClick);
             this.dataAddProductAllParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataAddProductAllParts_CellContentClick);
             // 
             // dataAddProductAssociate
@@ -132,11 +133,11 @@ namespace KFrench_C968
             // lblAddProductID
             // 
             this.lblAddProductID.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAddProductID.Location = new System.Drawing.Point(58, 133);
+            this.lblAddProductID.Location = new System.Drawing.Point(40, 133);
             this.lblAddProductID.Name = "lblAddProductID";
-            this.lblAddProductID.Size = new System.Drawing.Size(82, 23);
+            this.lblAddProductID.Size = new System.Drawing.Size(100, 23);
             this.lblAddProductID.TabIndex = 24;
-            this.lblAddProductID.Text = "Part ID";
+            this.lblAddProductID.Text = "Product ID";
             // 
             // lblAddProductName
             // 

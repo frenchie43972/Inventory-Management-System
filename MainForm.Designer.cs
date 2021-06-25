@@ -192,7 +192,7 @@ namespace KFrench_C968
             this.dataMainParts.RowTemplate.Height = 25;
             this.dataMainParts.Size = new System.Drawing.Size(456, 199);
             this.dataMainParts.TabIndex = 16;
-            //this.dataMainParts.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataMainParts_CellContentClick);
+            this.dataMainParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataMainParts_CellClick);
             // 
             // dataMainProducts
             // 

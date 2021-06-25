@@ -144,7 +144,7 @@ namespace KFrench_C968
             this.lblModifyPartMachineID.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblModifyPartMachineID.Location = new System.Drawing.Point(23, 370);
             this.lblModifyPartMachineID.Name = "lblModifyPartMachineID";
-            this.lblModifyPartMachineID.Size = new System.Drawing.Size(100, 23);
+            this.lblModifyPartMachineID.Size = new System.Drawing.Size(136, 23);
             this.lblModifyPartMachineID.TabIndex = 18;
             this.lblModifyPartMachineID.Text = "Machine ID";
             // 

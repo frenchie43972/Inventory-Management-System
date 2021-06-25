@@ -16,8 +16,9 @@ namespace KFrench_C968
         public AddPart()
         {
             InitializeComponent();
-            txtAddPartID.Enabled = false; 
-            
+            txtAddPartID.Enabled = false;
+            btnAddPartSave.Enabled = false;
+
         }
 
         private void lblAddPartPrice_Click(object sender, EventArgs e)
@@ -42,20 +43,22 @@ namespace KFrench_C968
             }
         }
 
-        private void txtAddPartID_TextChanged(object sender, EventArgs e)
+        public void txtAddPartID_TextChanged(object sender, EventArgs e)
         {
 
         }
-
+        /*The below code for textboxes have exception handling to verify correct information is entered into the fields*/
         private void txtAddPartName_TextChanged(object sender, EventArgs e)
         {
             if (String.IsNullOrWhiteSpace(txtAddPartName.Text))
             {
                 txtAddPartName.BackColor = Color.Salmon;
+                btnAddPartSave.Enabled = false;
             }
             else
             {
                 txtAddPartName.BackColor = Color.White;
+                btnAddPartSave.Enabled = true;
             }
         }
 
@@ -64,10 +67,13 @@ namespace KFrench_C968
             if (String.IsNullOrWhiteSpace(txtAddPartInv.Text) || !Int32.TryParse(txtAddPartInv.Text, out _))
             {
                 txtAddPartInv.BackColor = Color.Salmon;
+                btnAddPartSave.Enabled = false;
             }
+            
             else
             {
                 txtAddPartInv.BackColor = Color.White;
+                btnAddPartSave.Enabled = true;
             }
         }
 
@@ -76,10 +82,12 @@ namespace KFrench_C968
             if (String.IsNullOrWhiteSpace(txtAddPartPrice.Text) || !Decimal.TryParse(txtAddPartPrice.Text, out _))
             {
                 txtAddPartPrice.BackColor = Color.Salmon;
+                btnAddPartSave.Enabled = false;
             }
             else
             {
                 txtAddPartPrice.BackColor = Color.White;
+                btnAddPartSave.Enabled = true;
             }
         }
 
@@ -88,10 +96,12 @@ namespace KFrench_C968
             if (String.IsNullOrWhiteSpace(txtAddPartMax.Text) || !Int32.TryParse(txtAddPartMax.Text, out _))
             {
                 txtAddPartMax.BackColor = Color.Salmon;
+                btnAddPartSave.Enabled = false;
             }
             else
             {
                 txtAddPartMax.BackColor = Color.White;
+                btnAddPartSave.Enabled = true;
             }
         }
 
@@ -100,54 +110,71 @@ namespace KFrench_C968
             if (String.IsNullOrWhiteSpace(txtAddPartMin.Text) || !Int32.TryParse(txtAddPartMin.Text, out _))
             {
                 txtAddPartMin.BackColor = Color.Salmon;
+                btnAddPartSave.Enabled = false;
             }
             else
             {
                 txtAddPartMin.BackColor = Color.White;
+                btnAddPartSave.Enabled = true;
             }
         }
 
         private void txtAddPartMachineID_TextChanged(object sender, EventArgs e)
-        {
+        {   
+            /*Ensures that when In House is checked it will only accept integers and when Outsourced is checked
+             it can accepts either string or integers and will not allow a save unless the correct information is entered*/
             if (radioInHouseAdd.Checked)
             {
                 if (String.IsNullOrWhiteSpace(txtAddPartMachineID.Text) || !Int32.TryParse(txtAddPartMachineID.Text, out _))
                 {
                     txtAddPartMachineID.BackColor = Color.Salmon;
+                    btnAddPartSave.Enabled = false;
                 }
                 else
                 {
                     txtAddPartMachineID.BackColor = Color.White;
+                    btnAddPartSave.Enabled = true;
                 }
-                //btnAddPartSave.Enabled = saveVerify();
             }
             if (radioOutsourcedAdd.Checked)
             {
                 if (String.IsNullOrWhiteSpace(txtAddPartMachineID.Text))
                 {
                     txtAddPartMachineID.BackColor = Color.Salmon;
+                    btnAddPartSave.Enabled = false;
                 }
                 else
                 {
                     txtAddPartMachineID.BackColor = Color.White;
+                    btnAddPartSave.Enabled = true;
                 }
-                //btnAddPartSave.Enabled = saveVerify();
             }
-
         }
 
-        //private bool saveVerify()
-        //{
-        //    return true; 
-        //} 
         private void BtnAddPartSave_Click(object sender, EventArgs e)
         {
-            //Adds either In House or Outsourced Part. Displays on the Main Form
+            //Modifies the selected row from the main page
             if (radioInHouseAdd.Checked)
             {
                 InHouse inHouse = new(txtAddPartName.Text, decimal.Parse(txtAddPartPrice.Text), int.Parse(txtAddPartInv.Text),
                     int.Parse(txtAddPartMin.Text), int.Parse(txtAddPartMax.Text), int.Parse(txtAddPartMachineID.Text));
-
+                //Ensures you cannot enter or save quantities if Max is less than Min or Inventory is leass than Min or greater than Max
+                if (int.Parse(txtAddPartMax.Text) < int.Parse(txtAddPartMin.Text))
+                {
+                    MessageBox.Show("Max quantity may not exceed Min quantity!", "ATTENTION!");
+                    txtAddPartMax.BackColor = Color.Salmon;
+                    btnAddPartSave.Enabled = false;
+                    return;
+                }
+                if ((Int32.Parse(txtAddPartInv.Text) < Int32.Parse(txtAddPartMin.Text)) || 
+                    (Int32.Parse(txtAddPartInv.Text) > Int32.Parse(txtAddPartMax.Text)))
+                {
+                    MessageBox.Show("Your Inventory may not be below the Min or above the Max quantities!", "ATTENTION!");
+                    txtAddPartInv.BackColor = Color.Salmon;
+                    btnAddPartSave.Enabled = false;
+                    return;
+                }
+                
                 this.Hide();
                 MainForm addSave = new();
                 Inventory.AddPart(inHouse); 
@@ -163,7 +190,6 @@ namespace KFrench_C968
                 Inventory.AddPart(outsource);
                 addSave.Show();
             }
-
         }
 
         private void btnAddPartCancel_Click(object sender, EventArgs e)

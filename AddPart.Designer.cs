@@ -158,9 +158,9 @@ namespace KFrench_C968
             // lblAddPartID
             // 
             this.lblAddPartID.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAddPartID.Location = new System.Drawing.Point(58, 90);
+            this.lblAddPartID.Location = new System.Drawing.Point(60, 90);
             this.lblAddPartID.Name = "lblAddPartID";
-            this.lblAddPartID.Size = new System.Drawing.Size(82, 23);
+            this.lblAddPartID.Size = new System.Drawing.Size(80, 23);
             this.lblAddPartID.TabIndex = 10;
             this.lblAddPartID.Text = "Part ID";
             // 

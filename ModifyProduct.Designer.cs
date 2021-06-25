@@ -203,11 +203,11 @@ namespace KFrench_C968
             // lblAddProductID
             // 
             this.lblAddProductID.Font = new System.Drawing.Font("MS Reference Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblAddProductID.Location = new System.Drawing.Point(73, 134);
+            this.lblAddProductID.Location = new System.Drawing.Point(55, 134);
             this.lblAddProductID.Name = "lblAddProductID";
-            this.lblAddProductID.Size = new System.Drawing.Size(82, 23);
+            this.lblAddProductID.Size = new System.Drawing.Size(100, 23);
             this.lblAddProductID.TabIndex = 47;
-            this.lblAddProductID.Text = "Part ID";
+            this.lblAddProductID.Text = "Product ID";
             // 
             // lblModifyProductTitle
             // 
@@ -270,6 +270,7 @@ namespace KFrench_C968
             this.dataModifyProductAssociate.RowTemplate.Height = 25;
             this.dataModifyProductAssociate.Size = new System.Drawing.Size(456, 159);
             this.dataModifyProductAssociate.TabIndex = 41;
+            this.dataModifyProductAssociate.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataModifyProductAssociate_CellContentClick);
             // 
             // dataModifyProductAllParts
             // 
