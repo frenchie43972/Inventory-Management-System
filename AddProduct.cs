@@ -12,12 +12,13 @@ namespace KFrench_C968
 {
     public partial class AddProduct : Form
     {
+        private BindingList<Part> bottomList = new BindingList<Part>();
+        private int topIndex = 0;
+        private int bottomIndex = -1;
 
         public AddProduct()
         {
             InitializeComponent();
-            Product test = new Product("Tom", 9.99M, 23, 1, 35);
-            Inventory.CurrentProduct = test;
             GridViewRefresh();
             FormatPartViewDGV(dataAddProductAllParts);
             FormatPartViewDGV(dataAddProductAssociate);
@@ -39,7 +40,36 @@ namespace KFrench_C968
 
         private void btnAddProductSearch_Click(object sender, EventArgs e)
         {
-
+            BindingList<Part> TempList = new BindingList<Part>();
+            bool found = false;
+            if (txtAddProductSearch.Text != "")
+            {
+                for (int i = 0; i < Inventory.AllParts.Count; i++)
+                {
+                    if (Inventory.AllParts[i].Name.ToUpper().Contains(txtAddProductSearch.Text.ToUpper()))
+                    {
+                        TempList.Add(Inventory.AllParts[i]);
+                        found = true;
+                    }
+                }
+                if (found)
+                {
+                    dataAddProductAllParts.DataSource = TempList;
+                }
+            }
+            if (!found)
+            {
+                if (String.IsNullOrWhiteSpace(txtAddProductSearch.Text))
+                {
+                    MessageBox.Show("Search filed cannot be empty.", "Attention!");
+                    dataAddProductAllParts.DataSource = Inventory.AllParts;
+                }
+                else
+                {
+                    MessageBox.Show("Part not found.", "Attention!");
+                    dataAddProductAllParts.DataSource = Inventory.AllParts;
+                }
+            }
         }
 
         private void txtAddProductSearch_TextChanged(object sender, EventArgs e)
@@ -124,32 +154,30 @@ namespace KFrench_C968
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            Inventory.CurrentProduct.AddAssociatedPart(Inventory.CurrentPart);
-            dataAddProductAssociate.DataSource = Inventory.CurrentProduct.AssociatedParts;
+            bottomList.Add(Inventory.AllParts[topIndex]); 
         }
 
         private void btnAddProductDelete_Click(object sender, EventArgs e)
         {
+            if(bottomList.Count == 0)
+            {
+                return;
+            }
+
             DialogResult associatedPartDelete = MessageBox.Show("Are you sure you want to delete this part?", "Confirm", MessageBoxButtons.YesNo);
 
             if (associatedPartDelete == DialogResult.Yes)
             {
                 foreach (DataGridViewRow row in dataAddProductAssociate.SelectedRows)
                 {
-                    dataAddProductAssociate.Rows.RemoveAt(row.Index);
+                    bottomList.RemoveAt(row.Index);
                 }
             }
-            else
-            {
-                dataAddProductAssociate.DataSource = Inventory.CurrentProduct.AssociatedParts;
-            }
-            
         }
 
         private void btnAddProductSave_Click(object sender, EventArgs e)
         {
-            Product newProduct = new(txtAddProductName.Text, decimal.Parse(txtAddProductPrice.Text), int.Parse(txtAddProductInv.Text),
-                    int.Parse(txtAddProductMin.Text), int.Parse(txtAddProductMax.Text));
+            
             if (int.Parse(txtAddProductMax.Text) < int.Parse(txtAddProductMin.Text))
             {
                 MessageBox.Show("Max quantity may not exceed Min quantity!", "ATTENTION!");
@@ -165,20 +193,18 @@ namespace KFrench_C968
                 btnAddProductSave.Enabled = false;
                 return;
             }
-            if (dataAddProductAssociate.RowCount == 0)
+
+            this.Hide();
+            MainForm productSave = new();
+            Product newProduct = new(txtAddProductName.Text, decimal.Parse(txtAddProductPrice.Text), int.Parse(txtAddProductInv.Text),
+                    int.Parse(txtAddProductMin.Text), int.Parse(txtAddProductMax.Text));
+            foreach (Part p in bottomList)
             {
-                MessageBox.Show("You have no associated parts with this product.", "ATTENTION!");
-                btnAddProductSave.Enabled = false;
-                return;
+                newProduct.AddAssociatedPart(p);
             }
-            else
-            {
-                btnAddProductSave.Enabled = true;
-                this.Hide();
-                MainForm productSave = new();
-                Inventory.Add_Product(newProduct);
-                productSave.Show();
-            }
+            Inventory.Add_Product(newProduct);
+            productSave.Show();
+
         }
 
         private void btnAddProductCancel_Click(object sender, EventArgs e)
@@ -200,20 +226,18 @@ namespace KFrench_C968
         public void GridViewRefresh()
         {
             dataAddProductAllParts.DataSource = Inventory.AllParts;
-            dataAddProductAssociate.DataSource = dataAddProductAllParts;
+            dataAddProductAssociate.DataSource = bottomList;
             dataAddProductAllParts.ClearSelection();
         }
 
         private void dataAddProductAllParts_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Inventory.CurrentIndex = dataAddProductAllParts.CurrentCell.RowIndex;
-            Inventory.CurrentPart = Inventory.AllParts[Inventory.CurrentIndex];
+            topIndex = dataAddProductAllParts.CurrentCell.RowIndex;
         }
 
         private void dataAddProductAssociate_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            Inventory.CurrentIndex = dataAddProductAssociate.CurrentCell.RowIndex;
-            Inventory.CurrentProduct = Inventory.Products[Inventory.CurrentIndex];
+            bottomIndex = dataAddProductAssociate.CurrentCell.RowIndex;
         }
     }
 }

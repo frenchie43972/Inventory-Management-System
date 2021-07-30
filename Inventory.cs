@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace KFrench_C968
 {
@@ -35,25 +36,21 @@ namespace KFrench_C968
             return false;
         }
 
-        //public static Product LookupProduct(int )
-        //{
-
-        //}
+        public static Product LookupProduct(int productID)
+        {
+            foreach (Product p in Products)
+            {
+                if (p.ProductID == productID)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
 
         public static void UpdateProduct(int productID, Product modProduct)
         {
-            foreach (var product in Products)
-            {
-                if (product.ProductID == productID)
-                {
-                    product.Name = modProduct.Name;
-                    product.Price = modProduct.Price;
-                    product.Instock = modProduct.Instock;
-                    product.Min = modProduct.Min;
-                    product.Max = modProduct.Max;
-                    return;
-                }
-            }
+            Products[CurrentIndex] = modProduct;
         }
 
         /*-------------The Parts Section-------------*/
@@ -84,18 +81,7 @@ namespace KFrench_C968
 
         public static void UpdatePart(int partID, Part modPart)
         {
-            foreach (var part in AllParts)
-            {
-                if (part.PartID == partID)
-                {
-                    part.Name = modPart.Name;
-                    part.Price = modPart.Price;
-                    part.InStock = modPart.InStock;
-                    part.Min = modPart.Min;
-                    part.Max = modPart.Max;
-                    return;
-                }
-            }
+            AllParts[CurrentIndex] = modPart;
         }
     }
 }

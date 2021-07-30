@@ -26,6 +26,15 @@ namespace KFrench_C968
             Min = min;
             Max = max;
         }
-        
+
+        public Part(int ID, string name, decimal price, int stock, int min, int max)
+        {
+            PartID = ID;
+            Name = name;
+            Price = price;
+            InStock = stock;
+            Min = min;
+            Max = max;
+        }
     }
 }

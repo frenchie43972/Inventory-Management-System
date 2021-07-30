@@ -153,14 +153,14 @@ namespace KFrench_C968
         {
             if (dataMainProducts.CurrentRow.DataBoundItem.GetType() == typeof(Product))
             {
-                Product modProduct = (Product)dataMainProducts.CurrentRow.DataBoundItem;
+                Product modifyProduct = (Product)dataMainProducts.CurrentRow.DataBoundItem;
                 this.Hide();
-                ModifyProduct modProductMain = new ModifyProduct();
-                modProductMain.Show();
-            }
+                ModifyProduct modifyMain = new();
+                modifyMain.Show();
+            }            
             else
             {
-                MessageBox.Show("Please select a product to modify.", "ATTENTION!");
+                MessageBox.Show("Please select a part to modify.", "ATTENTION!");
                 return;
             }
         }
@@ -172,9 +172,21 @@ namespace KFrench_C968
 
             if (productDelete == DialogResult.Yes)
             {
-                foreach (DataGridViewRow row in dataMainProducts.SelectedRows)
+                if (Inventory.Products.Count > 0)
                 {
-                    dataMainProducts.Rows.RemoveAt(row.Index);
+                    foreach (DataGridViewRow row in dataMainProducts.SelectedRows)
+                    {
+                        int productID = int.Parse(dataMainProducts.Rows[dataMainProducts.CurrentCell.RowIndex].Cells[0].Value.ToString());
+                        Product invalidProduct = Inventory.LookupProduct(productID);
+                        if (invalidProduct.AssociatedParts.Count > 0)
+                        {
+                            DialogResult message = MessageBox.Show("A product must not have any associated parts in order to be deleted", "Attention!");
+                        }
+                        else
+                        {
+                            Inventory.RemoveProduct(productID);
+                        }
+                    }
                 }
             }
             else
@@ -194,11 +206,6 @@ namespace KFrench_C968
         }
 
         private void txtMainProductsSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dataMainProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

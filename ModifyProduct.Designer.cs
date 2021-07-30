@@ -270,7 +270,7 @@ namespace KFrench_C968
             this.dataModifyProductAssociate.RowTemplate.Height = 25;
             this.dataModifyProductAssociate.Size = new System.Drawing.Size(456, 159);
             this.dataModifyProductAssociate.TabIndex = 41;
-            this.dataModifyProductAssociate.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataModifyProductAssociate_CellContentClick);
+            this.dataModifyProductAssociate.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataModifyProductAssociate_CellClick);
             // 
             // dataModifyProductAllParts
             // 
@@ -280,6 +280,7 @@ namespace KFrench_C968
             this.dataModifyProductAllParts.RowTemplate.Height = 25;
             this.dataModifyProductAllParts.Size = new System.Drawing.Size(456, 159);
             this.dataModifyProductAllParts.TabIndex = 40;
+            this.dataModifyProductAllParts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataModifyProductAllParts_CellClick);
             // 
             // ModifyProduct
             // 

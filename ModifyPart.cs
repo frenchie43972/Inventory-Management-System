@@ -22,9 +22,36 @@ namespace KFrench_C968
             txtModifyPartPrice.Text = Inventory.AllParts[Inventory.CurrentIndex].Price.ToString();
             txtModifyPartMax.Text = Inventory.AllParts[Inventory.CurrentIndex].Max.ToString();
             txtModifyPartMin.Text = Inventory.AllParts[Inventory.CurrentIndex].Min.ToString();
-            //Supposed to be used for MachineID
-            txtModifyMachineID.Text = Inventory.AllParts[Inventory.CurrentIndex].Min.ToString();
+            machineOrCompany();
         }
+
+        /* This section was created to have the appropriate Machine ID or Company Name information
+         populate in the Modify Parts screen*/
+        private void ModOutsource(Outsource P)
+        {
+            txtModifyMachineID.Text = P.CompanyName;
+            lblModifyPartMachineID.Text = "Company Name";
+        }
+
+        private void ModInHouse(InHouse P)
+        {
+            txtModifyMachineID.Text = P.MachineID.ToString();
+        }
+
+        public void machineOrCompany()
+        {
+            if (Inventory.CurrentPart.GetType() == typeof(Outsource))
+            {
+                radioOutsourcedModify.Checked = true;
+                ModOutsource((Outsource)Inventory.CurrentPart);
+            }
+            else
+            {
+                radioInHouseModify.Checked = true;
+                ModInHouse((InHouse)Inventory.CurrentPart);
+            }
+        }
+        /*--------------------End Section--------------------*/
 
         private void radioInHouseModify_CheckedChanged(object sender, EventArgs e)
         {
@@ -127,7 +154,7 @@ namespace KFrench_C968
             //Will modify either In House or Outsourced Part. Displays on the Main Form
             if (radioInHouseModify.Checked)
             {
-                InHouse inHouse = new(txtModifyPartName.Text, decimal.Parse(txtModifyPartPrice.Text), int.Parse(txtModifyPartInv.Text),
+                InHouse inHouse = new(Int32.Parse(txtModifyPartID.Text), txtModifyPartName.Text, decimal.Parse(txtModifyPartPrice.Text), int.Parse(txtModifyPartInv.Text),
                     int.Parse(txtModifyPartMin.Text), int.Parse(txtModifyPartMax.Text), int.Parse(txtModifyMachineID.Text));
                 //Ensures you cannot enter or save quantities if Max is less than Min or Inventory is leass than Min or greater than Max
                 if (int.Parse(txtModifyPartMax.Text) < int.Parse(txtModifyPartMin.Text))
@@ -153,7 +180,7 @@ namespace KFrench_C968
             }
             else
             {
-                Outsource outsource = new(txtModifyPartName.Text, decimal.Parse(txtModifyPartPrice.Text), int.Parse(txtModifyPartInv.Text),
+                Outsource outsource = new(Int32.Parse(txtModifyPartID.Text), txtModifyPartName.Text, decimal.Parse(txtModifyPartPrice.Text), int.Parse(txtModifyPartInv.Text),
                     int.Parse(txtModifyPartMin.Text), int.Parse(txtModifyPartMax.Text), txtModifyMachineID.Text);
 
                 this.Hide();

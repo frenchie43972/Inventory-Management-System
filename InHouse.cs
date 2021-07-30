@@ -16,5 +16,10 @@ namespace KFrench_C968
             MachineID = machineID;
         }
 
+        public InHouse(int ID, string Name, decimal Price, int InStock, int Min, int Max, int machineID) : base(ID, Name, Price, InStock, Min, Max)
+        {
+            MachineID = machineID;
+        }
+
     }
 }

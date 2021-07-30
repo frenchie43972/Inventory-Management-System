@@ -29,6 +29,16 @@ namespace KFrench_C968
             Max = max;
         }
 
+        public Product(int ID, string name, decimal price, int stock, int min, int max)
+        {
+            ProductID = ID;
+            Name = name;
+            Price = price;
+            Instock = stock;
+            Min = min;
+            Max = max;
+        }
+
         public void AddAssociatedPart(Part part)
         {
             AssociatedParts.Add(part);
@@ -48,9 +58,16 @@ namespace KFrench_C968
             return false;
         }
 
-        //public Part LookupAssociatedPart(int )
-        //{
-
-        //}
+        public Part LookupAssociatedPart(int partID)
+        {
+            foreach (Part p in AssociatedParts)
+            {
+                if (p.PartID == partID)
+                {
+                    return p;
+                }
+            }
+            return null;
+        }
     }
 }

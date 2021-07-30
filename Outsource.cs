@@ -14,5 +14,10 @@ namespace KFrench_C968
         {
             CompanyName = companyName;
         }
+
+        public Outsource(int ID, string Name, decimal Price, int InStock, int Min, int Max, string companyName) : base(ID, Name, Price, InStock, Min, Max)
+        {
+            CompanyName = companyName;
+        }
     }
 }
